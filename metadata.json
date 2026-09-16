@@ -1,0 +1,6 @@
+{
+  "name": "Kwan Studio - Studio Podcast Premium Maroc",
+  "description": "Studio d'enregistrement et de tournage podcast haut de gamme à Casablanca, Maroc. Équipements broadcast 4K, acoustique professionnelle et formules clé en main.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
