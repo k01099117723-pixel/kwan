@@ -1,5 +1,68 @@
-import React from 'react';
-import { Camera, Mic, Sliders, Sun, HardDrive, Monitor, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { Camera, Mic, Sliders, Sun, HardDrive } from 'lucide-react';
+
+interface EquipmentCardProps {
+  cat: {
+    icon: any;
+    category: string;
+    items: { name: string; desc: string }[];
+  };
+}
+
+const EquipmentCard: React.FC<EquipmentCardProps> = ({ cat }) => {
+  const Icon = cat.icon;
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
+
+  return (
+    <div
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="group relative p-8 rounded-3xl bg-[#0c1017]/90 backdrop-blur-xl border border-[#1d2638] hover:border-[#d4af37]/50 hover:shadow-2xl hover:shadow-[#d4af37]/5 transition-all duration-300 hover:-translate-y-1 overflow-hidden"
+    >
+      {/* Pointer Spotlight inside card */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          background: `radial-gradient(380px circle at ${mousePos.x}px ${mousePos.y}px, rgba(212, 175, 55, 0.08), transparent 75%)`
+        }}
+      />
+
+      <div className="relative z-10">
+        <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-[#182132]">
+          <div className="w-10 h-10 rounded-xl bg-[#141a26] border border-[#232d42] group-hover:border-[#d4af37]/40 flex items-center justify-center text-[#d4af37] transition-colors">
+            <Icon className="w-5 h-5" />
+          </div>
+          <h3 className="text-lg font-bold font-display text-white group-hover:text-[#f3e5ab] transition-colors">
+            {cat.category}
+          </h3>
+        </div>
+
+        <div className="space-y-4">
+          {cat.items.map((item, i) => (
+            <div key={i} className="flex items-start gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] mt-2 shrink-0 group-hover:shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-shadow" />
+              <div>
+                <div className="text-sm font-bold text-white group-hover:text-white transition-colors">{item.name}</div>
+                <div className="text-xs text-[#8291a5] leading-relaxed">{item.desc}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const EquipmentSection: React.FC = () => {
   const categories = [
@@ -46,8 +109,12 @@ export const EquipmentSection: React.FC = () => {
   ];
 
   return (
-    <section id="equipements" className="py-24 bg-[#080b11] relative border-t border-[#151b27]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="equipements" className="py-24 bg-[#080b11] relative border-t border-[#151b27] overflow-hidden">
+      {/* Ambient background light orbs */}
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#d4af37]/5 rounded-full blur-[160px] pointer-events-none animate-slow-orbit" />
+      <div className="absolute bottom-1/4 left-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
@@ -65,36 +132,9 @@ export const EquipmentSection: React.FC = () => {
 
         {/* Equipment Matrix */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {categories.map((cat, idx) => {
-            const Icon = cat.icon;
-            return (
-              <div
-                key={idx}
-                className="p-8 rounded-3xl bg-[#0c1017] border border-[#1d2638] hover:border-[#d4af37]/40 transition-all duration-300"
-              >
-                <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-[#182132]">
-                  <div className="w-10 h-10 rounded-xl bg-[#141a26] border border-[#232d42] flex items-center justify-center text-[#d4af37]">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-lg font-bold font-display text-white">
-                    {cat.category}
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  {cat.items.map((item, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-[#d4af37] mt-2 shrink-0" />
-                      <div>
-                        <div className="text-sm font-bold text-white">{item.name}</div>
-                        <div className="text-xs text-[#8291a5] leading-relaxed">{item.desc}</div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
+          {categories.map((cat, idx) => (
+            <EquipmentCard key={idx} cat={cat} />
+          ))}
         </div>
 
       </div>

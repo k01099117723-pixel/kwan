@@ -111,6 +111,8 @@ export const AudioVisualizerWave: React.FC = () => {
         ctx.beginPath();
         ctx.strokeStyle = layer.color;
         ctx.lineWidth = layer.lineWidth;
+        ctx.shadowColor = 'rgba(212, 175, 55, 0.45)';
+        ctx.shadowBlur = isPlaying ? 14 : 8;
 
         for (let x = 0; x < width; x += 3) {
           const mouseInfluence = Math.sin((x / width) * Math.PI) * (mouseRef.current.y * 12);
@@ -126,6 +128,7 @@ export const AudioVisualizerWave: React.FC = () => {
           }
         }
         ctx.stroke();
+        ctx.shadowBlur = 0;
       });
 
       // Frequency nodes / glowing particles along the peak

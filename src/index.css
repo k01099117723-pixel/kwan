@@ -103,3 +103,158 @@
   0%, 100% { height: 4px; }
   50% { height: 26px; }
 }
+
+/* Ambient Slow Light Motion */
+@keyframes slow-orbit {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -40px) scale(1.08);
+  }
+  66% {
+    transform: translate(-25px, 20px) scale(0.95);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.animate-slow-orbit {
+  animation: slow-orbit 22s ease-in-out infinite;
+}
+
+@keyframes slow-orbit-reverse {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-35px, 30px) scale(0.96);
+  }
+  66% {
+    transform: translate(25px, -20px) scale(1.06);
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.animate-slow-orbit-rev {
+  animation: slow-orbit-reverse 26s ease-in-out infinite;
+}
+
+/* Studio Vignette Overlay */
+.cinematic-vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 35;
+  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(3, 4, 7, 0.65) 100%);
+}
+
+/* Studio Acoustic Micro-Grid */
+.studio-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(212, 175, 55, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Button & Card Light Sheen Sweeps */
+.gold-light-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.gold-light-sweep::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(243, 229, 171, 0.12) 50%,
+    transparent 65%
+  );
+  transform: rotate(25deg);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.gold-light-sweep:hover::after {
+  transform: translateX(130%) rotate(25deg);
+}
+
+/* Premium Gold Gradient Motion for Primary CTA */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gold-flow {
+  background-size: 200% auto;
+  animation: gradient-flow 6s ease infinite;
+}
+
+/* Nav Link Underline Animation */
+.nav-link-item {
+  position: relative;
+}
+
+.nav-link-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #d4af37, #f3e5ab, transparent);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-50%);
+}
+
+.nav-link-item:hover::after {
+  width: 75%;
+}
+
+/* Focus Visible Accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  ring: 2px;
+  ring-color: #d4af37;
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.5), 0 0 14px rgba(212, 175, 55, 0.4);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-pulse-slow,
+  .animate-shimmer,
+  .animate-gold-flow,
+  .animate-slow-orbit,
+  .animate-slow-orbit-rev {
+    animation: none !important;
+  }
+}
+

@@ -138,11 +138,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-[#0c1017] border border-[#222a3d] rounded-3xl shadow-2xl shadow-black/80 overflow-hidden">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-300">
+      <div className="relative w-full max-w-2xl bg-[#0c1017]/98 backdrop-blur-2xl border border-[#d4af37]/35 rounded-3xl shadow-2xl shadow-black/95 overflow-hidden animate-in zoom-in-95 duration-300">
         
         {/* Header decoration bar */}
-        <div className="h-1.5 w-full bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#d4af37]" />
+        <div className="h-1.5 w-full bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#d4af37] animate-gold-flow" />
 
         {/* Close button */}
         <button

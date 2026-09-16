@@ -75,11 +75,11 @@ export const InteractiveHotspotStudio: React.FC<{ onBookNow: () => void }> = ({ 
   const [selectedHotspot, setSelectedHotspot] = useState<Hotspot>(HOTSPOTS[0]);
 
   return (
-    <div className="py-16 bg-[#080b12] relative overflow-hidden border-t border-[#161c2b]">
+    <div className="py-20 bg-[#080b12] relative overflow-hidden border-t border-[#161c2b]">
       {/* Background glow */}
-      <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[#d4af37]/8 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[#d4af37]/8 rounded-full blur-[160px] pointer-events-none animate-slow-orbit" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section title */}
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
@@ -100,14 +100,14 @@ export const InteractiveHotspotStudio: React.FC<{ onBookNow: () => void }> = ({ 
           
           {/* Main Visual Stage with Hotspot Pins */}
           <div className="lg:col-span-7 relative">
-            <div className="relative rounded-3xl overflow-hidden aspect-[16/10] bg-[#0c1017] border border-[#222b3e] shadow-2xl group">
+            <div className="relative rounded-3xl overflow-hidden aspect-[16/10] bg-[#0c1017] border border-[#222b3e] shadow-2xl shadow-black/80 group">
               <img
                 src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop"
                 alt="Studio Plateau Kwan Studio"
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover filter brightness-[0.88] group-hover:brightness-95 transition-all duration-700"
+                className="w-full h-full object-cover filter brightness-[0.88] group-hover:brightness-95 group-hover:scale-[1.02] transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080b12]/80 via-transparent to-black/30" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#080b12]/85 via-transparent to-black/35" />
 
               {/* Hotspot Markers */}
               {HOTSPOTS.map((spot) => {
@@ -127,19 +127,19 @@ export const InteractiveHotspotStudio: React.FC<{ onBookNow: () => void }> = ({ 
                         isSelected ? 'bg-[#f3e5ab] scale-150' : 'bg-[#d4af37]'
                       }`}
                     />
-                    {/* Pin button */}
+                    {/* Pin button with gold glow */}
                     <span
                       className={`relative flex items-center justify-center rounded-full transition-all duration-300 shadow-xl ${
                         isSelected
-                          ? 'w-11 h-11 bg-gradient-to-r from-[#d4af37] to-[#f3e5ab] text-black scale-110 ring-4 ring-[#d4af37]/40'
-                          : 'w-9 h-9 bg-[#111624]/90 backdrop-blur-md text-[#d4af37] border border-[#d4af37]/50 hover:scale-110 hover:border-[#d4af37]'
+                          ? 'w-11 h-11 bg-gradient-to-r from-[#d4af37] to-[#f3e5ab] text-black scale-110 ring-4 ring-[#d4af37]/50 shadow-[0_0_20px_rgba(212,175,55,0.6)]'
+                          : 'w-9 h-9 bg-[#111624]/90 backdrop-blur-md text-[#d4af37] border border-[#d4af37]/50 hover:scale-110 hover:border-[#d4af37] shadow-black/60'
                       }`}
                     >
                       <Icon className="w-4 h-4" />
                     </span>
 
                     {/* Tooltip on hover */}
-                    <span className="hidden sm:block absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2.5 py-1 rounded-lg bg-black/85 backdrop-blur-md text-[10px] font-bold text-white whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition-opacity border border-white/10 pointer-events-none shadow-lg">
+                    <span className="hidden sm:block absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2.5 py-1 rounded-lg bg-black/90 backdrop-blur-md text-[10px] font-bold text-white whitespace-nowrap opacity-0 group-hover/pin:opacity-100 transition-opacity border border-[#d4af37]/30 pointer-events-none shadow-xl">
                       {spot.name}
                     </span>
                   </button>
@@ -147,24 +147,24 @@ export const InteractiveHotspotStudio: React.FC<{ onBookNow: () => void }> = ({ 
               })}
 
               {/* Bottom bar indicator */}
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white/80 bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10">
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-white/90 bg-black/75 backdrop-blur-md px-4 py-2.5 rounded-xl border border-white/15 shadow-lg">
                 <span className="text-[11px] text-[#cad6e4]">
-                  Point actif : <strong className="text-[#f3e5ab]">{selectedHotspot.name}</strong>
+                  Point actif : <strong className="text-[#f3e5ab] font-bold">{selectedHotspot.name}</strong>
                 </span>
                 <span className="text-[10px] text-[#8ea0b5]">5 points d'ingénierie</span>
               </div>
             </div>
           </div>
 
-          {/* Details Card for Selected Hotspot */}
+          {/* Details Card for Selected Hotspot with Glassmorphism and Gold Glow */}
           <div className="lg:col-span-5">
-            <div className="p-8 rounded-3xl bg-gradient-to-b from-[#111624] via-[#0d121c] to-[#0a0e16] border border-[#d4af37]/30 shadow-2xl relative space-y-5">
+            <div className="p-8 rounded-3xl bg-gradient-to-b from-[#111624]/95 via-[#0d121c]/95 to-[#0a0e16]/95 backdrop-blur-xl border border-[#d4af37]/35 shadow-2xl shadow-black/80 relative space-y-5">
               
               <div className="flex items-center justify-between">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#182132] border border-[#d4af37]/30 text-[11px] font-bold text-[#f3e5ab] uppercase tracking-wider">
                   {selectedHotspot.category}
                 </div>
-                <div className="w-10 h-10 rounded-xl bg-[#172030] border border-[#27354f] flex items-center justify-center text-[#d4af37]">
+                <div className="w-10 h-10 rounded-xl bg-[#172030] border border-[#27354f] flex items-center justify-center text-[#d4af37] shadow-inner">
                   {React.createElement(selectedHotspot.icon, { className: 'w-5 h-5' })}
                 </div>
               </div>
@@ -200,10 +200,11 @@ export const InteractiveHotspotStudio: React.FC<{ onBookNow: () => void }> = ({ 
               <div className="pt-3">
                 <button
                   onClick={onBookNow}
-                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#f3e5ab] text-[#07080c] font-bold text-xs shadow-lg shadow-[#d4af37]/20 hover:scale-[1.01] transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#d4af37] animate-gold-flow text-[#07080c] font-black text-xs shadow-lg shadow-[#d4af37]/25 hover:shadow-[#d4af37]/40 hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group relative overflow-hidden"
                 >
-                  <span>Réserver une session avec ce setup</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
+                  <span className="relative z-10">Réserver une session avec ce setup</span>
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 relative z-10" />
                 </button>
               </div>
 

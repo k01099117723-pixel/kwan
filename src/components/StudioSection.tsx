@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Maximize2, X, ChevronLeft, ChevronRight, CheckCircle2, Sliders, Mic2, Camera, Sparkles } from 'lucide-react';
+import { Maximize2, X, ChevronLeft, ChevronRight, Sliders, Mic2, Camera, Sparkles } from 'lucide-react';
 
 interface StudioImage {
   url: string;
@@ -36,16 +36,7 @@ const DEFAULT_STUDIO_IMAGES: StudioImage[] = [
 ];
 
 export const StudioSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'all' | 'plateau' | 'audio' | 'video'>('all');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-
-  const filteredImages = DEFAULT_STUDIO_IMAGES.filter(img => {
-    if (activeTab === 'all') return true;
-    if (activeTab === 'plateau') return img.category.includes('Plateau');
-    if (activeTab === 'audio') return img.category.includes('Audio') || img.category.includes('Régie');
-    if (activeTab === 'video') return img.category.includes('Vidéo');
-    return true;
-  });
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -68,15 +59,16 @@ export const StudioSection: React.FC = () => {
   };
 
   return (
-    <section id="studio" className="py-24 bg-[#090c13] relative border-t border-[#161c28]">
-      {/* Glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-[140px] pointer-events-none" />
+    <section id="studio" className="py-24 bg-[#090c13] relative border-t border-[#161c28] overflow-hidden">
+      {/* Ambient background glow */}
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#d4af37]/6 rounded-full blur-[150px] pointer-events-none animate-slow-orbit" />
+      <div className="absolute bottom-10 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#141926] border border-[#d4af37]/25 text-[#f3e5ab] text-xs font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#141926] border border-[#d4af37]/30 text-[#f3e5ab] text-xs font-semibold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
             <span>L'Espace Kwan Studio</span>
           </div>
@@ -88,46 +80,52 @@ export const StudioSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Studio Specs Bar */}
+        {/* Studio Specs Bar with glassmorphism & hover illumination */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div className="p-6 rounded-2xl bg-[#0f131c] border border-[#1d2536] hover:border-[#d4af37]/40 transition-all duration-300">
-            <div className="w-12 h-12 rounded-xl bg-[#161c2b] border border-[#242e44] flex items-center justify-center text-[#d4af37] mb-4">
+          <div className="group p-6 rounded-2xl bg-[#0f131c]/90 backdrop-blur-md border border-[#1d2536] hover:border-[#d4af37]/50 hover:shadow-xl hover:shadow-[#d4af37]/5 transition-all duration-300">
+            <div className="w-12 h-12 rounded-xl bg-[#161c2b] border border-[#242e44] group-hover:border-[#d4af37]/40 flex items-center justify-center text-[#d4af37] mb-4 group-hover:scale-105 transition-all duration-300">
               <Camera className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-white mb-2">Caméras Sony FX3 Cinema Line</h3>
+            <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#f3e5ab] transition-colors">
+              Caméras Sony FX3 Cinema Line
+            </h3>
             <p className="text-sm text-[#8796ab] leading-relaxed">
               3 angles de prise de vue 4K 10-bit en simultané. Rendu colorimétrique cinématographique S-Cinetone pour des teintes de peau naturelles.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-[#0f131c] border border-[#1d2536] hover:border-[#d4af37]/40 transition-all duration-300">
-            <div className="w-12 h-12 rounded-xl bg-[#161c2b] border border-[#242e44] flex items-center justify-center text-[#d4af37] mb-4">
+          <div className="group p-6 rounded-2xl bg-[#0f131c]/90 backdrop-blur-md border border-[#1d2536] hover:border-[#d4af37]/50 hover:shadow-xl hover:shadow-[#d4af37]/5 transition-all duration-300">
+            <div className="w-12 h-12 rounded-xl bg-[#161c2b] border border-[#242e44] group-hover:border-[#d4af37]/40 flex items-center justify-center text-[#d4af37] mb-4 group-hover:scale-105 transition-all duration-300">
               <Mic2 className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-white mb-2">Micros Broadcast Shure SM7B</h3>
+            <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#f3e5ab] transition-colors">
+              Micros Broadcast Shure SM7B
+            </h3>
             <p className="text-sm text-[#8796ab] leading-relaxed">
               La référence mondiale des plus grands podcasts. Clarté vocale exceptionnelle, réjection totale des bruits d'ambiance et présence chaleureuse.
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-[#0f131c] border border-[#1d2536] hover:border-[#d4af37]/40 transition-all duration-300">
-            <div className="w-12 h-12 rounded-xl bg-[#161c2b] border border-[#242e44] flex items-center justify-center text-[#d4af37] mb-4">
+          <div className="group p-6 rounded-2xl bg-[#0f131c]/90 backdrop-blur-md border border-[#1d2536] hover:border-[#d4af37]/50 hover:shadow-xl hover:shadow-[#d4af37]/5 transition-all duration-300">
+            <div className="w-12 h-12 rounded-xl bg-[#161c2b] border border-[#242e44] group-hover:border-[#d4af37]/40 flex items-center justify-center text-[#d4af37] mb-4 group-hover:scale-105 transition-all duration-300">
               <Sliders className="w-6 h-6" />
             </div>
-            <h3 className="text-lg font-bold text-white mb-2">Traitement Acoustique & Régie</h3>
+            <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#f3e5ab] transition-colors">
+              Traitement Acoustique & Régie
+            </h3>
             <p className="text-sm text-[#8796ab] leading-relaxed">
               Panneaux absorbants en tasseaux de bois naturel, insonorisation studio certifiée et régie technique dédiée pilotée par nos ingénieurs son.
             </p>
           </div>
         </div>
 
-        {/* Gallery Grid */}
+        {/* Gallery Grid with smooth zoom and shine sweep */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {DEFAULT_STUDIO_IMAGES.map((img, index) => (
             <div
               key={index}
               onClick={() => openLightbox(index)}
-              className="group relative rounded-2xl overflow-hidden bg-[#111520] border border-[#1e2638] hover:border-[#d4af37]/50 transition-all duration-500 cursor-pointer shadow-xl shadow-black/40"
+              className="group relative rounded-2xl overflow-hidden bg-[#111520] border border-[#1e2638] hover:border-[#d4af37]/60 transition-all duration-500 cursor-pointer shadow-xl shadow-black/60 hover:-translate-y-1"
             >
               <div className="aspect-[16/10] overflow-hidden relative">
                 <img
@@ -136,20 +134,23 @@ export const StudioSection: React.FC = () => {
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 filter brightness-90 group-hover:brightness-100"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+
+                {/* Diagonal light shine sheen on hover */}
+                <span className="absolute inset-0 w-1/2 h-full bg-white/10 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
 
                 {/* Lightbox Trigger Icon */}
-                <div className="absolute top-4 right-4 w-10 h-10 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Maximize2 className="w-4 h-4" />
+                <div className="absolute top-4 right-4 w-10 h-10 rounded-xl bg-black/70 backdrop-blur-md border border-white/15 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                  <Maximize2 className="w-4 h-4 text-[#f3e5ab]" />
                 </div>
 
                 {/* Category Pill */}
-                <div className="absolute top-4 left-4 px-3 py-1 rounded-lg bg-[#0e121c]/80 backdrop-blur-md border border-[#d4af37]/30 text-[11px] font-semibold text-[#f3e5ab] uppercase tracking-wider">
+                <div className="absolute top-4 left-4 px-3 py-1 rounded-lg bg-[#0e121c]/85 backdrop-blur-md border border-[#d4af37]/35 text-[11px] font-semibold text-[#f3e5ab] uppercase tracking-wider shadow-sm">
                   {img.category}
                 </div>
 
                 {/* Content Overlay */}
-                <div className="absolute bottom-5 left-5 right-5 space-y-1.5">
+                <div className="absolute bottom-5 left-5 right-5 space-y-1.5 z-10">
                   <h3 className="text-lg sm:text-xl font-bold font-display text-white group-hover:text-[#f3e5ab] transition-colors">
                     {img.title}
                   </h3>
@@ -164,9 +165,9 @@ export const StudioSection: React.FC = () => {
 
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal with smooth backdrop blur */}
       {lightboxIndex !== null && (
-        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 animate-in fade-in duration-300">
           <button
             onClick={closeLightbox}
             className="absolute top-6 right-6 p-3 rounded-xl bg-[#141926] text-white hover:text-[#d4af37] border border-[#242e44] z-50 transition-colors"
@@ -178,7 +179,7 @@ export const StudioSection: React.FC = () => {
           <button
             onClick={prevLightbox}
             className="absolute left-6 p-3 rounded-xl bg-[#141926] text-white hover:text-[#d4af37] border border-[#242e44] z-50 transition-colors hidden sm:flex items-center justify-center"
-            aria-label="Photo précédente"
+            aria-label="Image précédente"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
@@ -186,28 +187,28 @@ export const StudioSection: React.FC = () => {
           <button
             onClick={nextLightbox}
             className="absolute right-6 p-3 rounded-xl bg-[#141926] text-white hover:text-[#d4af37] border border-[#242e44] z-50 transition-colors hidden sm:flex items-center justify-center"
-            aria-label="Photo suivante"
+            aria-label="Image suivante"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
 
-          <div className="max-w-5xl w-full max-h-[90vh] flex flex-col items-center">
-            <div className="relative rounded-2xl overflow-hidden border border-[#d4af37]/30 shadow-2xl max-h-[75vh]">
+          <div className="max-w-4xl w-full mx-auto space-y-4">
+            <div className="relative rounded-3xl overflow-hidden aspect-[16/10] bg-[#0c1017] border border-[#222c42] shadow-2xl">
               <img
                 src={DEFAULT_STUDIO_IMAGES[lightboxIndex].url}
                 alt={DEFAULT_STUDIO_IMAGES[lightboxIndex].title}
                 referrerPolicy="no-referrer"
-                className="w-full h-auto max-h-[75vh] object-contain rounded-2xl"
+                className="w-full h-full object-cover"
               />
             </div>
-            <div className="text-center mt-4 space-y-1">
-              <span className="text-xs uppercase font-bold text-[#d4af37] tracking-widest">
-                {DEFAULT_STUDIO_IMAGES[lightboxIndex].category} · {lightboxIndex + 1} / {DEFAULT_STUDIO_IMAGES.length}
+            <div className="text-center space-y-1">
+              <span className="text-xs uppercase tracking-widest text-[#d4af37] font-bold">
+                {DEFAULT_STUDIO_IMAGES[lightboxIndex].category}
               </span>
-              <h3 className="text-xl font-bold text-white">
+              <h4 className="text-xl font-bold font-display text-white">
                 {DEFAULT_STUDIO_IMAGES[lightboxIndex].title}
-              </h3>
-              <p className="text-sm text-[#93a2b7] max-w-xl mx-auto">
+              </h4>
+              <p className="text-sm text-[#8f9faf] max-w-xl mx-auto">
                 {DEFAULT_STUDIO_IMAGES[lightboxIndex].description}
               </p>
             </div>

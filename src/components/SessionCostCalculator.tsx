@@ -315,13 +315,14 @@ export const SessionCostCalculator: React.FC<CalculatorProps> = ({ onBookWithCus
                 </div>
               </div>
 
-              {/* CTA */}
+              {/* CTA with animated gold flow & shine sweep */}
               <button
                 onClick={handleBook}
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#d4af37] text-[#07080c] font-black text-sm shadow-xl shadow-[#d4af37]/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#d4af37] animate-gold-flow text-[#07080c] font-black text-sm shadow-xl shadow-[#d4af37]/30 hover:shadow-[#d4af37]/50 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group relative overflow-hidden"
               >
-                <span>Réserver cette configuration</span>
-                <ArrowRight className="w-4 h-4" />
+                <span className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
+                <span className="relative z-10">Réserver cette configuration</span>
+                <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
 
               <div className="text-[11px] text-[#718296] text-center">

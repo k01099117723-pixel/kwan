@@ -26,8 +26,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ settings, onOpen
   };
 
   return (
-    <section id="contact" className="py-24 bg-[#07090e] relative border-t border-[#151b27]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 bg-[#07090e] relative border-t border-[#151b27] overflow-hidden">
+      {/* Ambient background light orbs */}
+      <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-[#d4af37]/5 rounded-full blur-[170px] pointer-events-none animate-slow-orbit" />
+      <div className="absolute bottom-10 left-0 w-[450px] h-[450px] bg-emerald-900/10 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
@@ -53,10 +57,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ settings, onOpen
               href={`https://wa.me/${whatsapp.replace(/[^0-9]/g, '')}?text=Bonjour%20Kwan%20Studio%2C%20je%20souhaite%20des%20informations%20sur%20les%20r%C3%A9servations.`}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-6 rounded-2xl bg-gradient-to-r from-[#12281a] via-[#0e1c14] to-[#0c131a] border border-[#25D366]/40 hover:border-[#25D366] transition-all flex items-center justify-between group shadow-lg"
+              className="p-6 rounded-2xl bg-gradient-to-r from-[#12281a] via-[#0e1c14] to-[#0c131a] border border-[#25D366]/40 hover:border-[#25D366] transition-all duration-300 flex items-center justify-between group shadow-xl hover:shadow-[#25D366]/10 hover:-translate-y-0.5"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#25D366]/20 flex items-center justify-center text-[#25D366]">
+                <div className="w-12 h-12 rounded-xl bg-[#25D366]/20 flex items-center justify-center text-[#25D366] group-hover:scale-105 transition-transform">
                   <MessageSquare className="w-6 h-6" />
                 </div>
                 <div>
@@ -74,7 +78,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ settings, onOpen
             </a>
 
             {/* Phone */}
-            <div className="p-6 rounded-2xl bg-[#0c1017] border border-[#1b2334] flex items-center gap-4">
+            <div className="p-6 rounded-2xl bg-[#0c1017]/90 backdrop-blur-md border border-[#1b2334] hover:border-[#d4af37]/40 transition-all duration-300 flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-[#141a27] border border-[#222c40] flex items-center justify-center text-[#d4af37]">
                 <Phone className="w-5 h-5" />
               </div>
@@ -87,7 +91,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ settings, onOpen
             </div>
 
             {/* Email */}
-            <div className="p-6 rounded-2xl bg-[#0c1017] border border-[#1b2334] flex items-center gap-4">
+            <div className="p-6 rounded-2xl bg-[#0c1017]/90 backdrop-blur-md border border-[#1b2334] hover:border-[#d4af37]/40 transition-all duration-300 flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-[#141a27] border border-[#222c40] flex items-center justify-center text-[#d4af37]">
                 <Mail className="w-5 h-5" />
               </div>
@@ -100,7 +104,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ settings, onOpen
             </div>
 
             {/* Address */}
-            <div className="p-6 rounded-2xl bg-[#0c1017] border border-[#1b2334] flex items-center gap-4">
+            <div className="p-6 rounded-2xl bg-[#0c1017]/90 backdrop-blur-md border border-[#1b2334] hover:border-[#d4af37]/40 transition-all duration-300 flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-[#141a27] border border-[#222c40] flex items-center justify-center text-[#d4af37]">
                 <MapPin className="w-5 h-5" />
               </div>
@@ -113,7 +117,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ settings, onOpen
             </div>
 
             {/* Hours */}
-            <div className="p-6 rounded-2xl bg-[#0c1017] border border-[#1b2334] flex items-center gap-4">
+            <div className="p-6 rounded-2xl bg-[#0c1017]/90 backdrop-blur-md border border-[#1b2334] hover:border-[#d4af37]/40 transition-all duration-300 flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-[#141a27] border border-[#222c40] flex items-center justify-center text-[#d4af37]">
                 <Clock className="w-5 h-5" />
               </div>
@@ -129,7 +133,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ settings, onOpen
 
           {/* Right Column: Direct Message Form or Fast Booking */}
           <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#0c1017] border border-[#1e273a] shadow-xl">
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#0c1017]/95 backdrop-blur-xl border border-[#1e273a] shadow-2xl shadow-black/80">
               <h3 className="text-2xl font-bold font-display text-white mb-2">
                 Envoyez-nous un message direct
               </h3>
@@ -138,7 +142,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ settings, onOpen
               </p>
 
               {formSent ? (
-                <div className="p-6 rounded-2xl bg-[#131b28] border border-[#d4af37]/30 text-center space-y-3">
+                <div className="p-6 rounded-2xl bg-[#131b28] border border-[#d4af37]/40 text-center space-y-3 animate-in fade-in duration-300">
                   <CheckCircle2 className="w-10 h-10 text-[#d4af37] mx-auto" />
                   <h4 className="text-lg font-bold text-white">Message Reçu</h4>
                   <p className="text-xs sm:text-sm text-[#9cb0c8]">
@@ -167,7 +171,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ settings, onOpen
                         placeholder="Ex: Sarah Alami"
                         value={senderName}
                         onChange={(e) => setSenderName(e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl bg-[#111622] border border-[#212b3e] text-white text-sm focus:outline-none focus:border-[#d4af37]"
+                        className="w-full px-4 py-3 rounded-xl bg-[#111622] border border-[#212b3e] text-white text-sm focus:outline-none focus:border-[#d4af37] transition-colors"
                       />
                     </div>
                     <div className="space-y-1">
@@ -178,7 +182,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ settings, onOpen
                         placeholder="+212 6... ou email"
                         value={senderContact}
                         onChange={(e) => setSenderContact(e.target.value)}
-                        className="w-full px-4 py-3 rounded-xl bg-[#111622] border border-[#212b3e] text-white text-sm focus:outline-none focus:border-[#d4af37]"
+                        className="w-full px-4 py-3 rounded-xl bg-[#111622] border border-[#212b3e] text-white text-sm focus:outline-none focus:border-[#d4af37] transition-colors"
                       />
                     </div>
                   </div>
@@ -191,23 +195,24 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ settings, onOpen
                       placeholder="Décrivez votre projet, vos questions ou le format envisagé..."
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl bg-[#111622] border border-[#212b3e] text-white text-sm focus:outline-none focus:border-[#d4af37]"
+                      className="w-full px-4 py-3 rounded-xl bg-[#111622] border border-[#212b3e] text-white text-sm focus:outline-none focus:border-[#d4af37] transition-colors"
                     />
                   </div>
 
                   <div className="pt-2 flex flex-col sm:flex-row gap-3">
                     <button
                       type="submit"
-                      className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#d4af37] text-[#07080c] font-bold text-sm shadow-lg shadow-[#d4af37]/20 hover:scale-[1.01] transition-all flex items-center justify-center gap-2"
+                      className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#d4af37] via-[#f3e5ab] to-[#d4af37] animate-gold-flow text-[#07080c] font-black text-sm shadow-lg shadow-[#d4af37]/25 hover:shadow-[#d4af37]/45 hover:scale-[1.01] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group relative overflow-hidden"
                     >
-                      <span>Transmettre mon message</span>
-                      <Send className="w-4 h-4" />
+                      <span className="absolute inset-0 w-1/2 h-full bg-white/20 skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
+                      <span className="relative z-10">Transmettre mon message</span>
+                      <Send className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover:translate-x-0.5" />
                     </button>
 
                     <button
                       type="button"
                       onClick={onOpenBooking}
-                      className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#141a27] hover:bg-[#1c2436] text-white font-semibold text-sm border border-[#252f44] transition-colors"
+                      className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#141a27] hover:bg-[#1c2436] text-white font-semibold text-sm border border-[#252f44] hover:border-[#d4af37]/40 transition-all duration-300 active:scale-[0.98]"
                     >
                       Réserver un créneau directement
                     </button>

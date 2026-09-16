@@ -16,6 +16,7 @@ import { FaqSection } from './components/FaqSection.js';
 import { ContactSection } from './components/ContactSection.js';
 import { Footer } from './components/Footer.js';
 import { BookingModal } from './components/BookingModal.js';
+import { CustomCursor } from './components/CustomCursor.js';
 import { BlogListing } from './pages/BlogListing.js';
 import { BlogPostDetail } from './pages/BlogPostDetail.js';
 import { AdminLogin } from './components/admin/AdminLogin.js';
@@ -187,8 +188,12 @@ function MainApp() {
   return (
     <div className="min-h-screen bg-[#06070b] text-white flex flex-col selection:bg-[#d4af37] selection:text-black relative">
       
-      {/* Cinematic Film Grain Overlay */}
+      {/* Studio Gold Custom Cursor */}
+      <CustomCursor />
+
+      {/* Cinematic Film Grain & Dark Studio Vignette */}
       <div className="film-grain" />
+      <div className="cinematic-vignette" />
 
       {/* Top Navbar */}
       <Navbar
