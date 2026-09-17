@@ -22,12 +22,19 @@ export interface Booking {
   updated_at?: string;
 }
 
+export interface PackageTier {
+  name: string;
+  content: string;
+  price: string;
+}
+
 export interface Package {
   id: string;
   name: string;
   badge?: string;
   price: string;
   duration: string;
+  category?: 'podcast' | 'shooting' | 'content';
   description: string;
   image_url: string;
   cameras_count: number;
@@ -35,6 +42,8 @@ export interface Package {
   video_services: string;
   editing_services: string;
   additional_features: string[];
+  supplement?: string;
+  tiers?: PackageTier[];
   is_popular?: boolean;
   sort_order: number;
 }
@@ -95,70 +104,171 @@ export interface FAQ {
   is_active: boolean;
 }
 
-// Initial defaults
+// Initial defaults - 6 packs matching official Kwan Studio flyers
 const DEFAULT_PACKAGES: Package[] = [
   {
-    id: 'pack-audio',
-    name: "L'Essentiel Audio",
-    badge: 'Formule Audio Pure',
-    price: '600 MAD / heure',
-    duration: '1h à 3h par session',
-    description: 'Conçu pour les créateurs qui privilégient un rendu sonore broadcast impeccable, les voice-overs et les podcasts natifs audio.',
+    id: 'pack-podcast-brut',
+    name: 'Podcast Tournage Brut',
+    badge: 'Captation Brute',
+    price: '600 DH / 1H',
+    duration: '1 Heure',
+    category: 'podcast',
+    description: 'Tournage studio professionnel multi-caméras Sony avec micros broadcast, choix de décor et remise des rushes.',
     image_url: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop',
-    cameras_count: 0,
-    audio_services: "Jusqu'à 4 micros Shure SM7B sur bras articulés + Rødecaster Pro II",
-    video_services: 'Non inclus dans cette formule',
-    editing_services: 'Export brut multipiste WAV 48kHz/24-bit immédiat',
+    cameras_count: 2,
+    audio_services: '2 micros podcast broadcast haute clarté',
+    video_services: 'Studio équipé (2 caméras Sony) avec accompagnement sur place',
+    editing_services: 'Envoi des fichiers sous 3 jours ouvrés + sauvegarde 7 jours',
     additional_features: [
-      'Cabine insonorisée acoustique traitée',
-      'Casques monitoring studio pro',
-      "Salon d'accueil VIP et boissons incluses",
-      'Ingénieur du son disponible pour setup'
+      'Studio équipé (2 caméras Sony, 2 micros podcast)',
+      'Notre équipe vous accompagne sur place',
+      'Choix du décor',
+      'Adaptation des formats pour réseaux sociaux',
+      'Envoi des fichiers sous 3 jours ouvrés',
+      'Sauvegarde des fichiers pendant 7 jours'
     ],
     is_popular: false,
     sort_order: 1
   },
   {
-    id: 'pack-video',
-    name: 'Le Visio Standard',
+    id: 'pack-podcast-montage',
+    name: 'Podcast + Montage',
     badge: 'Le Plus Populaire',
-    price: '1 200 MAD / heure',
-    duration: '2 heures minimum',
-    description: 'Idéal pour les podcasts vidéo modernes diffusés sur YouTube, Spotify Vidéo et les réseaux sociaux avec un rendu cinématographique.',
-    image_url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop',
+    price: '1 000 DH / 1H',
+    duration: '1 Heure + Montage',
+    category: 'podcast',
+    description: 'La formule clé en main : tournage multi-caméras, montage complet de votre épisode et teaser dynamique au début.',
+    image_url: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop',
     cameras_count: 2,
-    audio_services: 'Kit complet micros Shure SM7B + mixage dynamique en direct',
-    video_services: '2 caméras Sony FX3 Cinéma 4K + éclairage 3-points Aputure doux',
-    editing_services: 'Synchronisation audio & vidéo brute délivrée sous 24 heures',
+    audio_services: '2 micros podcast haute fidélité avec monitoring direct',
+    video_services: '2 caméras Sony + cadreur & régisseur dédié',
+    editing_services: 'Montage complet de votre épisode + Teaser au début',
     additional_features: [
-      "Décor acoustique bois noble et néon d'ambiance",
-      'Prompteur ou retour vidéo 4K pour invités',
-      'Fichiers 4K UHD Master livrés sur Cloud privé',
-      'Technicien de régie présent tout au long de la session'
+      'Studio équipé (2 caméras Sony, 2 micros podcast)',
+      'Notre équipe vous accompagne sur place',
+      'Choix du décor sur-mesure',
+      'Adaptation des formats pour réseaux sociaux',
+      'Montage de votre épisode',
+      'Teaser au début de l’épisode',
+      'Envoi des fichiers sous 3 jours ouvrés',
+      'Sauvegarde des fichiers pendant 7 jours'
     ],
+    supplement: 'Suppléments (200 DH) : Montage Live + Livraison sous 2h',
     is_popular: true,
     sort_order: 2
   },
   {
-    id: 'pack-elite',
-    name: "L'Élite Broadcast",
-    badge: 'Production Clé en Main',
-    price: '2 500 MAD / session',
-    duration: 'Session demi-journée (3h30)',
-    description: "La solution de référence pour les entreprises, marques et créateurs d'envergure souhaitant une émission prestige prête à diffuser.",
-    image_url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop',
-    cameras_count: 3,
-    audio_services: 'Traitement sonore studio haut de gamme, mastering et habillage audio',
-    video_services: '3 caméras Sony FX3 4K avec cadreur + réalisation multi-angles en direct',
-    editing_services: "Montage complet de l'épisode + étalonnage cinéma + 3 shorts/Reels verticaux",
+    id: 'pack-shooting-photo',
+    name: 'Shooting Photo',
+    badge: 'Studio Photo HD',
+    price: '300 DH',
+    duration: 'Session Studio Photo',
+    category: 'shooting',
+    description: 'Séance photo professionnelle en studio pour artistes, experts, créateurs de contenu ou profils corporate.',
+    image_url: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop',
+    cameras_count: 2,
+    audio_services: 'Ambiance lounge musicale sur place',
+    video_services: 'Studio équipé (2 caméras Sony & lumières photo pro)',
+    editing_services: '12 photos sélectionnées et retouchées en PNG haute qualité',
     additional_features: [
-      'Direction artistique personnalisée et habillage graphique',
-      'Café de spécialité & conciergerie VIP pour vos invités',
-      'Génération des sous-titres animés et miniatures YouTube',
-      'Archivage sécurisé de tous vos rushes bruts pendant 12 mois'
+      'Nombre de photos (12 photos)',
+      'Studio équipé (2 caméras Sony)',
+      'Notre équipe vous accompagne sur place',
+      'Haute qualité PNG non compressé',
+      'Envoi des fichiers sous 3 jours ouvrés',
+      'Sauvegarde des fichiers pendant 7 jours'
     ],
     is_popular: false,
     sort_order: 3
+  },
+  {
+    id: 'pack-shooting-produit',
+    name: 'Shooting Produit',
+    badge: 'Packshot & E-commerce',
+    price: '500 DH',
+    duration: 'Session Produit',
+    category: 'shooting',
+    description: 'Mise en valeur esthétique de vos produits, packshots e-commerce et vitrines de marque avec décors adaptés.',
+    image_url: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop',
+    cameras_count: 2,
+    audio_services: 'Captation ambiance sonore',
+    video_services: 'Studio équipé (2 caméras Sony) avec angles dédiés aux produits',
+    editing_services: 'Adaptation et optimisation des formats pour réseaux sociaux',
+    additional_features: [
+      'Studio équipé (2 caméras Sony)',
+      'Notre équipe vous accompagne sur place',
+      'Choix du décor',
+      'Adaptation des formats pour réseaux sociaux',
+      'Envoi des fichiers sous 3 jours ouvrés',
+      'Sauvegarde des fichiers pendant 7 jours'
+    ],
+    is_popular: false,
+    sort_order: 4
+  },
+  {
+    id: 'pack-shooting-produit-ugc',
+    name: 'Shooting Produit UGC',
+    badge: 'Vidéo UGC Tendance',
+    price: '400 - 500 DH',
+    duration: 'Session Vidéo Produit UGC',
+    category: 'shooting',
+    description: 'Captation vidéo authentique style UGC avec mise en scène réaliste, démonstration produit et montage vidéo inclus.',
+    image_url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop',
+    cameras_count: 2,
+    audio_services: 'Micros dédiés pour voix off et prise de son directe',
+    video_services: 'Studio équipé (2 caméras Sony, micros) en décor lifestyle',
+    editing_services: 'Montage complet de la vidéo UGC prêt pour les Reels / TikTok',
+    additional_features: [
+      'Studio équipé (2 caméras Sony, micros)',
+      'Notre équipe vous accompagne sur place',
+      'Choix du décor (cuisine, salon, bureau)',
+      'Haute qualité de vidéo',
+      'Montage de la vidéo inclus',
+      'Envoi des fichiers sous 3 jours ouvrés',
+      'Sauvegarde des fichiers pendant 7 jours'
+    ],
+    is_popular: true,
+    sort_order: 5
+  },
+  {
+    id: 'pack-creation-contenu',
+    name: 'Création de Contenu',
+    badge: 'Abonnements Reels Mensuels',
+    price: '3 500 – 12 000 DH',
+    duration: 'Abonnements Mensuels au Choix',
+    category: 'content',
+    description: 'Déléguez toute votre production de Reels : idées stratégiques, scripts, tournages en studio et montages complets chaque mois.',
+    image_url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop',
+    cameras_count: 2,
+    audio_services: 'Micros broadcast Shure SM7B avec préampli et monitoring',
+    video_services: 'Plateau multi-caméras Sony avec régie de tournage',
+    editing_services: 'Montages dynamiques avec sous-titres animés et habillage visuel',
+    additional_features: [
+      'Starter : 4 Reels/mois + idées + scripts + 1 tournage + montage (3 500 – 4 500 DH)',
+      'Standard : 8 Reels/mois + idées + scripts + 1/2 journées de tournage + montage (6 000 – 8 000 DH)',
+      'Premium : 12 Reels/mois + stratégie + scripts + tournage régulier + montage avancé (9 000 – 12 000 DH)',
+      'Accompagnement créatif complet par l’équipe Kwan Studio',
+      'Sauvegarde et archivage sécurisé de tous vos épisodes'
+    ],
+    tiers: [
+      {
+        name: 'Starter',
+        content: '4 Reels/mois + idées + scripts + 1 tournage + montage',
+        price: '3 500 – 4 500 DH'
+      },
+      {
+        name: 'Standard',
+        content: '8 Reels/mois + idées + scripts + 1/2 journées de tournage + montage',
+        price: '6 000 – 8 000 DH'
+      },
+      {
+        name: 'Premium',
+        content: '12 Reels/mois + stratégie + scripts + tournage régulier + montage avancé',
+        price: '9 000 – 12 000 DH'
+      }
+    ],
+    is_popular: true,
+    sort_order: 6
   }
 ];
 

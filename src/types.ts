@@ -1,9 +1,16 @@
+export interface PackageTier {
+  name: string;
+  content: string;
+  price: string;
+}
+
 export interface Package {
   id: string;
   name: string;
   badge?: string;
   price: string;
   duration: string;
+  category?: 'podcast' | 'shooting' | 'content';
   description: string;
   image_url: string;
   cameras_count: number;
@@ -11,6 +18,8 @@ export interface Package {
   video_services: string;
   editing_services: string;
   additional_features: string[];
+  supplement?: string;
+  tiers?: PackageTier[];
   is_popular?: boolean;
   sort_order: number;
 }

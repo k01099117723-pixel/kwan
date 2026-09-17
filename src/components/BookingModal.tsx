@@ -11,6 +11,7 @@ interface BookingModalProps {
   packages: Package[];
   whatsappNumber?: string;
   initialMessage?: string;
+  initialTier?: string;
 }
 
 const MOROCCAN_CITIES = [
@@ -37,9 +38,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   selectedPackage,
   packages,
   whatsappNumber = '212661000000',
-  initialMessage = ''
+  initialMessage = '',
+  initialTier = ''
 }) => {
   const [packageId, setPackageId] = useState<string>('');
+  const [selectedTier, setSelectedTier] = useState<string>('Standard');
   const [fullName, setFullName] = useState('');
   const [city, setCity] = useState('Casablanca');
   const [phone, setPhone] = useState('');
@@ -63,10 +66,18 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   useEffect(() => {
     if (selectedPackage) {
       setPackageId(selectedPackage.id);
+      if (selectedPackage.tiers && selectedPackage.tiers.length > 0) {
+        if (initialTier && selectedPackage.tiers.some(t => t.name.toLowerCase() === initialTier.toLowerCase())) {
+          const matched = selectedPackage.tiers.find(t => t.name.toLowerCase() === initialTier.toLowerCase());
+          if (matched) setSelectedTier(matched.name);
+        } else {
+          setSelectedTier(selectedPackage.tiers[0].name);
+        }
+      }
     } else if (packages.length > 0 && !packageId) {
       setPackageId(packages[1]?.id || packages[0].id);
     }
-  }, [selectedPackage, packages]);
+  }, [selectedPackage, packages, initialTier]);
 
   // Set min date to tomorrow
   const tomorrowStr = new Date(Date.now() + 86400000).toISOString().split('T')[0];
@@ -74,6 +85,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   if (!isOpen) return null;
 
   const currentPkg = packages.find(p => p.id === packageId) || packages[0];
+  const activeTierObj = currentPkg.tiers?.find(t => t.name.toLowerCase() === selectedTier.toLowerCase()) || currentPkg.tiers?.[0];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,17 +110,25 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     setLoading(true);
 
     try {
+      const packageDisplayName = activeTierObj && currentPkg.tiers && currentPkg.tiers.length > 0
+        ? `${currentPkg.name} [Niveau : ${activeTierObj.name} - ${activeTierObj.price}]`
+        : currentPkg.name;
+
+      const formattedMessage = activeTierObj && currentPkg.tiers && currentPkg.tiers.length > 0
+        ? `Niveau sélectionné : ${activeTierObj.name}\nPrestation : ${activeTierObj.content}\nTarif mensuel : ${activeTierObj.price}${message.trim() ? `\n\nNotes client : ${message.trim()}` : ''}`
+        : message.trim() || undefined;
+
       const res = await api.submitBooking({
         full_name: fullName.trim(),
         city,
         phone: phone.trim(),
         email: email.trim() || undefined,
         package_id: currentPkg.id,
-        package_name: currentPkg.name,
+        package_name: packageDisplayName,
         preferred_date: preferredDate,
         preferred_time: preferredTime,
         participants: Number(participants) || 2,
-        message: message.trim() || undefined
+        message: formattedMessage
       });
 
       setIsSuccess(true);
@@ -170,11 +190,24 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             </div>
 
             {/* Summary card */}
-            <div className="p-4 rounded-2xl bg-[#111622] border border-[#1e273a] text-left text-xs sm:text-sm text-[#9bb0c7] space-y-2 max-w-md mx-auto">
-              <div className="flex justify-between">
+            <div className="p-5 rounded-2xl bg-[#111622] border border-[#1e273a] text-left text-xs sm:text-sm text-[#9bb0c7] space-y-2.5 max-w-md mx-auto">
+              <div className="flex justify-between items-start gap-2">
                 <span>Formule choisie :</span>
-                <span className="font-bold text-white">{currentPkg.name}</span>
+                <span className="font-bold text-white text-right">
+                  {currentPkg.name}
+                  {activeTierObj && currentPkg.tiers && currentPkg.tiers.length > 0 && (
+                    <span className="block text-[#f3e5ab] text-xs font-semibold">
+                      {activeTierObj.name} ({activeTierObj.price})
+                    </span>
+                  )}
+                </span>
               </div>
+              {activeTierObj && currentPkg.tiers && currentPkg.tiers.length > 0 && (
+                <div className="p-2.5 rounded-xl bg-[#0b0e14] border border-[#1c2436] text-[11px] text-[#8c9cb2] leading-relaxed">
+                  <span className="font-bold text-white block mb-0.5">Prestations incluses :</span>
+                  {activeTierObj.content}
+                </div>
+              )}
               <div className="flex justify-between">
                 <span>Date & Créneau :</span>
                 <span className="font-bold text-white">{preferredDate} · {preferredTime}</span>
@@ -192,7 +225,11 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             {/* WhatsApp direct CTA */}
             <div className="pt-2 flex flex-col sm:flex-row gap-3 justify-center">
               <a
-                href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=Bonjour%20Kwan%20Studio%2C%20je%20viens%20de%20d%C3%A9poser%20la%20demande%20de%20r%C3%A9servation%20N%C2%B0${submittedBookingId}%20pour%20le%20${encodeURIComponent(currentPkg.name)}%20le%20${preferredDate}.`}
+                href={`https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
+                  activeTierObj && currentPkg.tiers && currentPkg.tiers.length > 0
+                    ? `Bonjour Kwan Studio, je viens de déposer la demande de réservation N°${submittedBookingId} pour la formule *${currentPkg.name} - ${activeTierObj.name}* (${activeTierObj.price}) le ${preferredDate}.`
+                    : `Bonjour Kwan Studio, je viens de déposer la demande de réservation N°${submittedBookingId} pour le *${currentPkg.name}* le ${preferredDate}.`
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-black font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-[#25D366]/20 transition-all"
@@ -237,17 +274,22 @@ export const BookingModal: React.FC<BookingModalProps> = ({
               <label className="text-xs font-semibold uppercase tracking-wider text-[#9bb0c7]">
                 Formule sélectionnée
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                 {packages.map((pkg) => {
                   const active = pkg.id === packageId;
                   return (
                     <button
                       type="button"
                       key={pkg.id}
-                      onClick={() => setPackageId(pkg.id)}
+                      onClick={() => {
+                        setPackageId(pkg.id);
+                        if (pkg.tiers && pkg.tiers.length > 0) {
+                          setSelectedTier(pkg.tiers[0].name);
+                        }
+                      }}
                       className={`p-3 rounded-xl text-left border transition-all ${
                         active
-                          ? 'bg-[#182133] border-[#d4af37] shadow-md shadow-[#d4af37]/10'
+                          ? 'bg-[#182133] border-[#d4af37] shadow-md shadow-[#d4af37]/10 ring-1 ring-[#d4af37]/50'
                           : 'bg-[#0e121a] border-[#1d2538] hover:border-[#2b354d]'
                       }`}
                     >
@@ -258,6 +300,65 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                 })}
               </div>
             </div>
+
+            {/* Special Interactive Tier Selector when Création de Contenu (or packages with tiers) is selected */}
+            {currentPkg.tiers && currentPkg.tiers.length > 0 && (
+              <div className="p-4 rounded-2xl bg-gradient-to-b from-[#131a29] to-[#0d121c] border-2 border-[#d4af37]/45 shadow-xl space-y-3 animate-in fade-in duration-300">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#f3e5ab]">
+                    <Sparkles className="w-3.5 h-3.5 text-[#d4af37]" />
+                    <span>Sélectionnez votre formule d’abonnement (Reels Mensuels) :</span>
+                  </div>
+                  <span className="text-[10px] font-bold text-[#d4af37] bg-[#d4af37]/15 px-2.5 py-0.5 rounded-full border border-[#d4af37]/30">
+                    3 options au choix
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  {currentPkg.tiers.map((tier) => {
+                    const isTierSelected = selectedTier.toLowerCase() === tier.name.toLowerCase();
+                    return (
+                      <button
+                        type="button"
+                        key={tier.name}
+                        onClick={() => setSelectedTier(tier.name)}
+                        className={`p-3 rounded-xl text-left border transition-all flex flex-col justify-between relative group ${
+                          isTierSelected
+                            ? 'bg-gradient-to-b from-[#1b2438] to-[#111724] border-[#d4af37] shadow-lg shadow-[#d4af37]/20 ring-1 ring-[#d4af37]'
+                            : 'bg-[#0b0e15] border-[#1c2438] hover:border-[#d4af37]/40 text-[#8c9bb0]'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-1">
+                          <span className={`text-sm font-extrabold font-display ${isTierSelected ? 'text-white' : 'text-[#b9c8db]'}`}>
+                            {tier.name}
+                          </span>
+                          <span
+                            className={`w-4 h-4 rounded-full border flex items-center justify-center text-[9px] ${
+                              isTierSelected
+                                ? 'bg-[#d4af37] border-[#d4af37] text-black font-bold'
+                                : 'border-[#323d54] text-transparent'
+                            }`}
+                          >
+                            ✓
+                          </span>
+                        </div>
+
+                        <p className="text-[11px] leading-snug text-[#9bb0c7] my-1.5 flex-1">
+                          {tier.content}
+                        </p>
+
+                        <div className="pt-2 mt-1 border-t border-[#1a2335] flex items-center justify-between">
+                          <span className="text-[10px] text-[#718296] font-medium">Tarif</span>
+                          <span className={`text-xs font-bold ${isTierSelected ? 'text-[#f3e5ab]' : 'text-white'}`}>
+                            {tier.price}
+                          </span>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {/* Customer Details */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

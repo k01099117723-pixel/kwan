@@ -43,7 +43,7 @@ export const AdminPackages: React.FC<AdminPackagesProps> = ({ packages, onRefres
           Configuration des Formules & Tarifs
         </h2>
         <p className="text-xs text-[#8c9bb0] mt-1">
-          Modifiez les prix, les options techniques et les descriptions des 3 formules de tournage.
+          Modifiez les prix, les options techniques et les descriptions des formules de tournage, shootings et création.
         </p>
       </div>
 

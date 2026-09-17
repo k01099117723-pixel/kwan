@@ -22,72 +22,171 @@ import { BlogPostDetail } from './pages/BlogPostDetail.js';
 import { AdminLogin } from './components/admin/AdminLogin.js';
 import { AdminPortal } from './components/admin/AdminPortal.js';
 
-// Fallback initial packages in case API is still initializing
+// Fallback initial packages matching official Kwan Studio flyers
 const INITIAL_PACKAGES: Package[] = [
   {
-    id: 'pack-essentiel-audio',
-    name: "L'Essentiel Audio",
-    badge: 'Formule Audio Pure',
-    price: '600 MAD / heure',
-    duration: '1 Heure minimum',
-    description: "Conçu pour les podcasters axés sur la voix, les créateurs d'émissions audio et le doublage vocal de haute précision.",
+    id: 'pack-podcast-brut',
+    name: 'Podcast Tournage Brut',
+    badge: 'Captation Brute',
+    price: '600 DH / 1H',
+    duration: '1 Heure',
+    category: 'podcast',
+    description: 'Tournage studio professionnel multi-caméras Sony avec micros broadcast, choix de décor et remise des rushes.',
     image_url: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop',
-    cameras_count: 0,
-    audio_services: 'Jusqu’à 4 micros Shure SM7B avec préamplification et monitoring indépendant',
-    video_services: 'Aucune captation vidéo',
-    editing_services: 'Nettoyage audio basique, égalisation et compression',
+    cameras_count: 2,
+    audio_services: '2 micros podcast broadcast haute clarté',
+    video_services: 'Studio équipé (2 caméras Sony) avec accompagnement sur place',
+    editing_services: 'Envoi des fichiers sous 3 jours ouvrés + sauvegarde 7 jours',
     additional_features: [
-      'Traitement acoustique broadcast certifié',
-      'Enregistrement multicanal séparé WAV 24-bit',
-      'Ingénieur du son dédié pour le réglage des gains',
-      'Exportation immédiate des pistes brutes sur clé ou cloud',
-      'Espace lounge & café offert'
+      'Studio équipé (2 caméras Sony, 2 micros podcast)',
+      'Notre équipe vous accompagne sur place',
+      'Choix du décor',
+      'Adaptation des formats pour réseaux sociaux',
+      'Envoi des fichiers sous 3 jours ouvrés',
+      'Sauvegarde des fichiers pendant 7 jours'
     ],
+    is_popular: false,
     sort_order: 1
   },
   {
-    id: 'pack-visio-standard',
-    name: 'Le Visio Standard',
+    id: 'pack-podcast-montage',
+    name: 'Podcast + Montage',
     badge: 'Le Plus Populaire',
-    price: '1 200 MAD / heure',
-    duration: '1 Heure minimum',
-    description: "Le format de référence pour les podcasts vidéo modernes : YouTube, Spotify Vidéo et extraits percutants pour les réseaux sociaux.",
-    image_url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop',
+    price: '1 000 DH / 1H',
+    duration: '1 Heure + Montage',
+    category: 'podcast',
+    description: 'La formule clé en main : tournage multi-caméras, montage complet de votre épisode et teaser dynamique au début.',
+    image_url: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop',
     cameras_count: 2,
-    audio_services: 'Prise de son studio Shure SM7B multicanale avec traitement dynamique en direct',
-    video_services: '2 Caméras Sony FX3 Cinéma 4K (plan large + gros plan invité/hôte) avec éclairage Aputure',
-    editing_services: 'Rushes vidéo 4K synchronisés livrés sous 24 heures',
+    audio_services: '2 micros podcast haute fidélité avec monitoring direct',
+    video_services: '2 caméras Sony + cadreur & régisseur dédié',
+    editing_services: 'Montage complet de votre épisode + Teaser au début',
     additional_features: [
-      'Tout le contenu du Pack Audio',
-      '2 angles 4K Cinema Line étalonnés',
-      'Éclairage 3 points doux et flatteur',
-      'Régisseur vidéo dédié pendant toute la session',
-      'Livraison des fichiers en 4K UHD non compressé'
+      'Studio équipé (2 caméras Sony, 2 micros podcast)',
+      'Notre équipe vous accompagne sur place',
+      'Choix du décor sur-mesure',
+      'Adaptation des formats pour réseaux sociaux',
+      'Montage de votre épisode',
+      'Teaser au début de l’épisode',
+      'Envoi des fichiers sous 3 jours ouvrés',
+      'Sauvegarde des fichiers pendant 7 jours'
     ],
+    supplement: 'Suppléments (200 DH) : Montage Live + Livraison sous 2h',
     is_popular: true,
     sort_order: 2
   },
   {
-    id: 'pack-elite-broadcast',
-    name: "L'Élite Broadcast",
-    badge: 'Production Clé en Main',
-    price: '2 500 MAD / session',
-    duration: 'Session 2 Heures + Post-Prod Complète',
-    description: "La solution de prestige pour entreprises, émissions de marque et personnalités publiques exigeant un rendu télévisuel sans aucun effort.",
+    id: 'pack-shooting-photo',
+    name: 'Shooting Photo',
+    badge: 'Studio Photo HD',
+    price: '300 DH',
+    duration: 'Session Studio Photo',
+    category: 'shooting',
+    description: 'Séance photo professionnelle en studio pour artistes, experts, créateurs de contenu ou profils corporate.',
     image_url: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop',
-    cameras_count: 3,
-    audio_services: 'Configuration complète jusqu’à 4 invités, mixage et mastering sonore broadcast',
-    video_services: 'Dispositif complet 3 Caméras 4K Sony FX3 avec réalisation en direct (Switching ATEM)',
-    editing_services: 'Montage vidéo dynamique complet + 3 Réels / Shorts verticaux sous-titrés',
+    cameras_count: 2,
+    audio_services: 'Ambiance lounge musicale sur place',
+    video_services: 'Studio équipé (2 caméras Sony & lumières photo pro)',
+    editing_services: '12 photos sélectionnées et retouchées en PNG haute qualité',
     additional_features: [
-      '3 angles de caméras 4K cinéma',
-      'Réalisation multi-caméras dynamique intégrée',
-      'Montage complet de l’épisode avec habillage visuel',
-      '3 teasers verticaux optimisés pour TikTok & Instagram',
-      'Accueil VIP privé avec boissons et confiserie',
-      'Archivage sécurisé de votre projet pendant 12 mois'
+      'Nombre de photos (12 photos)',
+      'Studio équipé (2 caméras Sony)',
+      'Notre équipe vous accompagne sur place',
+      'Haute qualité PNG non compressé',
+      'Envoi des fichiers sous 3 jours ouvrés',
+      'Sauvegarde des fichiers pendant 7 jours'
     ],
+    is_popular: false,
     sort_order: 3
+  },
+  {
+    id: 'pack-shooting-produit',
+    name: 'Shooting Produit',
+    badge: 'Packshot & E-commerce',
+    price: '500 DH',
+    duration: 'Session Produit',
+    category: 'shooting',
+    description: 'Mise en valeur esthétique de vos produits, packshots e-commerce et vitrines de marque avec décors adaptés.',
+    image_url: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop',
+    cameras_count: 2,
+    audio_services: 'Captation ambiance sonore',
+    video_services: 'Studio équipé (2 caméras Sony) avec angles dédiés aux produits',
+    editing_services: 'Adaptation et optimisation des formats pour réseaux sociaux',
+    additional_features: [
+      'Studio équipé (2 caméras Sony)',
+      'Notre équipe vous accompagne sur place',
+      'Choix du décor',
+      'Adaptation des formats pour réseaux sociaux',
+      'Envoi des fichiers sous 3 jours ouvrés',
+      'Sauvegarde des fichiers pendant 7 jours'
+    ],
+    is_popular: false,
+    sort_order: 4
+  },
+  {
+    id: 'pack-shooting-produit-ugc',
+    name: 'Shooting Produit UGC',
+    badge: 'Vidéo UGC Tendance',
+    price: '400 - 500 DH',
+    duration: 'Session Vidéo Produit UGC',
+    category: 'shooting',
+    description: 'Captation vidéo authentique style UGC avec mise en scène réaliste, démonstration produit et montage vidéo inclus.',
+    image_url: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop',
+    cameras_count: 2,
+    audio_services: 'Micros dédiés pour voix off et prise de son directe',
+    video_services: 'Studio équipé (2 caméras Sony, micros) en décor lifestyle',
+    editing_services: 'Montage complet de la vidéo UGC prêt pour les Reels / TikTok',
+    additional_features: [
+      'Studio équipé (2 caméras Sony, micros)',
+      'Notre équipe vous accompagne sur place',
+      'Choix du décor (cuisine, salon, bureau)',
+      'Haute qualité de vidéo',
+      'Montage de la vidéo inclus',
+      'Envoi des fichiers sous 3 jours ouvrés',
+      'Sauvegarde des fichiers pendant 7 jours'
+    ],
+    is_popular: true,
+    sort_order: 5
+  },
+  {
+    id: 'pack-creation-contenu',
+    name: 'Création de Contenu',
+    badge: 'Abonnements Reels Mensuels',
+    price: '3 500 – 12 000 DH',
+    duration: 'Abonnements Mensuels au Choix',
+    category: 'content',
+    description: 'Déléguez toute votre production de Reels : idées stratégiques, scripts, tournages en studio et montages complets chaque mois.',
+    image_url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop',
+    cameras_count: 2,
+    audio_services: 'Micros broadcast Shure SM7B avec préampli et monitoring',
+    video_services: 'Plateau multi-caméras Sony avec régie de tournage',
+    editing_services: 'Montages dynamiques avec sous-titres animés et habillage visuel',
+    additional_features: [
+      'Starter : 4 Reels/mois + idées + scripts + 1 tournage + montage (3 500 – 4 500 DH)',
+      'Standard : 8 Reels/mois + idées + scripts + 1/2 journées de tournage + montage (6 000 – 8 000 DH)',
+      'Premium : 12 Reels/mois + stratégie + scripts + tournage régulier + montage avancé (9 000 – 12 000 DH)',
+      'Accompagnement créatif complet par l’équipe Kwan Studio',
+      'Sauvegarde et archivage sécurisé de tous vos épisodes'
+    ],
+    tiers: [
+      {
+        name: 'Starter',
+        content: '4 Reels/mois + idées + scripts + 1 tournage + montage',
+        price: '3 500 – 4 500 DH'
+      },
+      {
+        name: 'Standard',
+        content: '8 Reels/mois + idées + scripts + 1/2 journées de tournage + montage',
+        price: '6 000 – 8 000 DH'
+      },
+      {
+        name: 'Premium',
+        content: '12 Reels/mois + stratégie + scripts + tournage régulier + montage avancé',
+        price: '9 000 – 12 000 DH'
+      }
+    ],
+    is_popular: true,
+    sort_order: 6
   }
 ];
 
@@ -106,6 +205,7 @@ function MainApp() {
   // Modals & custom booking messages
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [selectedPackageForBooking, setSelectedPackageForBooking] = useState<Package | null>(null);
+  const [bookingSelectedTier, setBookingSelectedTier] = useState<string>('');
   const [bookingCustomMessage, setBookingCustomMessage] = useState<string>('');
   const [isAdminLoginOpen, setIsAdminLoginOpen] = useState(false);
 
@@ -133,7 +233,7 @@ function MainApp() {
     loadAllData();
   }, []);
 
-  const handleOpenBooking = (pkgOrId?: Package | string, customMsg?: string) => {
+  const handleOpenBooking = (pkgOrId?: Package | string, customMsg?: string, tierName?: string) => {
     if (typeof pkgOrId === 'string') {
       const found = packages.find(p => p.id === pkgOrId);
       setSelectedPackageForBooking(found || packages[1] || packages[0]);
@@ -142,13 +242,19 @@ function MainApp() {
     } else {
       setSelectedPackageForBooking(packages[1] || packages[0]);
     }
+    setBookingSelectedTier(tierName || '');
     setBookingCustomMessage(customMsg || '');
     setIsBookingOpen(true);
   };
 
-  const handleBookWithCustomConfig = (configSummary: string, estimatedPrice: number) => {
-    const pkg = packages[1] || packages[0];
-    handleOpenBooking(pkg, `[Simulation Devis en Ligne] ${configSummary}`);
+  const handleBookWithCustomConfig = (
+    configSummary: string,
+    estimatedPrice: number,
+    packageId?: string,
+    tierName?: string
+  ) => {
+    const pkg = (packageId ? packages.find(p => p.id === packageId) : null) || packages[1] || packages[0];
+    handleOpenBooking(pkg, `[Devis Personnalisé : ${estimatedPrice} DH]\n${configSummary}`, tierName);
   };
 
   const handleNavigate = (route: string) => {
@@ -238,7 +344,7 @@ function MainApp() {
             {/* Packages Section */}
             <PackagesSection
               packages={packages}
-              onSelectPackage={(pkg) => handleOpenBooking(pkg)}
+              onSelectPackage={(pkg, tierName) => handleOpenBooking(pkg, undefined, tierName)}
             />
 
             {/* Live Interactive Session Cost Simulator */}
@@ -306,6 +412,7 @@ function MainApp() {
         isOpen={isBookingOpen}
         onClose={() => setIsBookingOpen(false)}
         selectedPackage={selectedPackageForBooking}
+        initialTier={bookingSelectedTier}
         packages={packages}
         whatsappNumber={settings.contact_whatsapp}
         initialMessage={bookingCustomMessage}

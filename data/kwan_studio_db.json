@@ -1,0 +1,413 @@
+{
+  "admins": [
+    {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@kwanstudio.ma",
+      "password_hash": "$2b$10$JZ1d8eNF1kJcGFhQjHyJjOJSmW8d1R1ZACd/TwagPJkMh2T4.xJbi",
+      "role": "admin"
+    }
+  ],
+  "packages": [
+    {
+      "id": "pack-podcast-brut",
+      "name": "Podcast Tournage Brut",
+      "badge": "Captation Brute",
+      "price": "600 DH / 1H",
+      "duration": "1 Heure",
+      "category": "podcast",
+      "description": "Tournage studio professionnel multi-caméras Sony avec micros broadcast, choix de décor et remise des rushes.",
+      "image_url": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=800&auto=format&fit=crop",
+      "cameras_count": 2,
+      "audio_services": "2 micros podcast broadcast haute clarté",
+      "video_services": "Studio équipé (2 caméras Sony) avec accompagnement sur place",
+      "editing_services": "Envoi des fichiers sous 3 jours ouvrés + sauvegarde 7 jours",
+      "additional_features": [
+        "Studio équipé (2 caméras Sony, 2 micros podcast)",
+        "Notre équipe vous accompagne sur place",
+        "Choix du décor",
+        "Adaptation des formats pour réseaux sociaux",
+        "Envoi des fichiers sous 3 jours ouvrés",
+        "Sauvegarde des fichiers pendant 7 jours"
+      ],
+      "is_popular": false,
+      "sort_order": 1
+    },
+    {
+      "id": "pack-podcast-montage",
+      "name": "Podcast + Montage",
+      "badge": "Le Plus Populaire",
+      "price": "1 000 DH / 1H",
+      "duration": "1 Heure + Montage",
+      "category": "podcast",
+      "description": "La formule clé en main : tournage multi-caméras, montage complet de votre épisode et teaser dynamique au début.",
+      "image_url": "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=800&auto=format&fit=crop",
+      "cameras_count": 2,
+      "audio_services": "2 micros podcast haute fidélité avec monitoring direct",
+      "video_services": "2 caméras Sony + cadreur & régisseur dédié",
+      "editing_services": "Montage complet de votre épisode + Teaser au début",
+      "additional_features": [
+        "Studio équipé (2 caméras Sony, 2 micros podcast)",
+        "Notre équipe vous accompagne sur place",
+        "Choix du décor sur-mesure",
+        "Adaptation des formats pour réseaux sociaux",
+        "Montage de votre épisode",
+        "Teaser au début de l’épisode",
+        "Envoi des fichiers sous 3 jours ouvrés",
+        "Sauvegarde des fichiers pendant 7 jours"
+      ],
+      "supplement": "Suppléments (200 DH) : Montage Live + Livraison sous 2h",
+      "is_popular": true,
+      "sort_order": 2
+    },
+    {
+      "id": "pack-shooting-photo",
+      "name": "Shooting Photo",
+      "badge": "Studio Photo HD",
+      "price": "300 DH",
+      "duration": "Session Studio Photo",
+      "category": "shooting",
+      "description": "Séance photo professionnelle en studio pour artistes, experts, créateurs de contenu ou profils corporate.",
+      "image_url": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=800&auto=format&fit=crop",
+      "cameras_count": 2,
+      "audio_services": "Ambiance lounge musicale sur place",
+      "video_services": "Studio équipé (2 caméras Sony & lumières photo pro)",
+      "editing_services": "12 photos sélectionnées et retouchées en PNG haute qualité",
+      "additional_features": [
+        "Nombre de photos (12 photos)",
+        "Studio équipé (2 caméras Sony)",
+        "Notre équipe vous accompagne sur place",
+        "Haute qualité PNG non compressé",
+        "Envoi des fichiers sous 3 jours ouvrés",
+        "Sauvegarde des fichiers pendant 7 jours"
+      ],
+      "is_popular": false,
+      "sort_order": 3
+    },
+    {
+      "id": "pack-shooting-produit",
+      "name": "Shooting Produit",
+      "badge": "Packshot & E-commerce",
+      "price": "500 DH",
+      "duration": "Session Produit",
+      "category": "shooting",
+      "description": "Mise en valeur esthétique de vos produits, packshots e-commerce et vitrines de marque avec décors adaptés.",
+      "image_url": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop",
+      "cameras_count": 2,
+      "audio_services": "Captation ambiance sonore",
+      "video_services": "Studio équipé (2 caméras Sony) avec angles dédiés aux produits",
+      "editing_services": "Adaptation et optimisation des formats pour réseaux sociaux",
+      "additional_features": [
+        "Studio équipé (2 caméras Sony)",
+        "Notre équipe vous accompagne sur place",
+        "Choix du décor",
+        "Adaptation des formats pour réseaux sociaux",
+        "Envoi des fichiers sous 3 jours ouvrés",
+        "Sauvegarde des fichiers pendant 7 jours"
+      ],
+      "is_popular": false,
+      "sort_order": 4
+    },
+    {
+      "id": "pack-shooting-produit-ugc",
+      "name": "Shooting Produit UGC",
+      "badge": "Vidéo UGC Tendance",
+      "price": "400 - 500 DH",
+      "duration": "Session Vidéo Produit UGC",
+      "category": "shooting",
+      "description": "Captation vidéo authentique style UGC avec mise en scène réaliste, démonstration produit et montage vidéo inclus.",
+      "image_url": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop",
+      "cameras_count": 2,
+      "audio_services": "Micros dédiés pour voix off et prise de son directe",
+      "video_services": "Studio équipé (2 caméras Sony, micros) en décor lifestyle",
+      "editing_services": "Montage complet de la vidéo UGC prêt pour les Reels / TikTok",
+      "additional_features": [
+        "Studio équipé (2 caméras Sony, micros)",
+        "Notre équipe vous accompagne sur place",
+        "Choix du décor (cuisine, salon, bureau)",
+        "Haute qualité de vidéo",
+        "Montage de la vidéo inclus",
+        "Envoi des fichiers sous 3 jours ouvrés",
+        "Sauvegarde des fichiers pendant 7 jours"
+      ],
+      "is_popular": true,
+      "sort_order": 5
+    },
+    {
+      "id": "pack-creation-contenu",
+      "name": "Création de Contenu",
+      "badge": "Abonnements Reels Mensuels",
+      "price": "3 500 – 12 000 DH",
+      "duration": "Abonnements Mensuels au Choix",
+      "category": "content",
+      "description": "Déléguez toute votre production de Reels : idées stratégiques, scripts, tournages en studio et montages complets chaque mois.",
+      "image_url": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop",
+      "cameras_count": 2,
+      "audio_services": "Micros broadcast Shure SM7B avec préampli et monitoring",
+      "video_services": "Plateau multi-caméras Sony avec régie de tournage",
+      "editing_services": "Montages dynamiques avec sous-titres animés et habillage visuel",
+      "additional_features": [
+        "Starter : 4 Reels/mois + idées + scripts + 1 tournage + montage (3 500 – 4 500 DH)",
+        "Standard : 8 Reels/mois + idées + scripts + 1/2 journées de tournage + montage (6 000 – 8 000 DH)",
+        "Premium : 12 Reels/mois + stratégie + scripts + tournage régulier + montage avancé (9 000 – 12 000 DH)",
+        "Accompagnement créatif complet par l’équipe Kwan Studio",
+        "Sauvegarde et archivage sécurisé de tous vos épisodes"
+      ],
+      "tiers": [
+        {
+          "name": "Starter",
+          "content": "4 Reels/mois + idées + scripts + 1 tournage + montage",
+          "price": "3 500 – 4 500 DH"
+        },
+        {
+          "name": "Standard",
+          "content": "8 Reels/mois + idées + scripts + 1/2 journées de tournage + montage",
+          "price": "6 000 – 8 000 DH"
+        },
+        {
+          "name": "Premium",
+          "content": "12 Reels/mois + stratégie + scripts + tournage régulier + montage avancé",
+          "price": "9 000 – 12 000 DH"
+        }
+      ],
+      "is_popular": true,
+      "sort_order": 6
+    }
+  ],
+  "bookings": [
+    {
+      "id": 1,
+      "full_name": "Youssef El Mansouri",
+      "city": "Casablanca",
+      "phone": "+212661234567",
+      "email": "youssef.m@gmail.com",
+      "package_id": "pack-video",
+      "package_name": "Le Visio Standard",
+      "preferred_date": "2026-09-22",
+      "preferred_time": "14:00 - 17:00",
+      "participants": 2,
+      "message": "Tournage du premier épisode de notre série sur l’immobilier d’investissement à Casablanca.",
+      "status": "New",
+      "admin_notes": "Premier contact reçu via le site web. Client intéressé par un créneau après-midi.",
+      "created_at": "2026-09-17T04:18:58.296Z"
+    },
+    {
+      "id": 2,
+      "full_name": "Sofia Chraibi",
+      "city": "Rabat",
+      "phone": "+212672345678",
+      "email": "sofia.c@agence-crea.ma",
+      "package_id": "pack-elite",
+      "package_name": "L'Élite Broadcast",
+      "preferred_date": "2026-09-26",
+      "preferred_time": "09:30 - 13:00",
+      "participants": 3,
+      "message": "Podcast de marque pour un grand groupe bancaire. Besoin de 3 formats courts verticaux pour LinkedIn.",
+      "status": "Contacted",
+      "admin_notes": "Appelée par WhatsApp. Devis validé, en attente de versement d’acompte.",
+      "created_at": "2026-09-16T04:18:58.296Z"
+    },
+    {
+      "id": 3,
+      "full_name": "Amine Guessous",
+      "city": "Casablanca",
+      "phone": "+212661987654",
+      "email": "guessous.amine@tech-talk.com",
+      "package_id": "pack-audio",
+      "package_name": "L'Essentiel Audio",
+      "preferred_date": "2026-09-18",
+      "preferred_time": "18:00 - 20:00",
+      "participants": 2,
+      "message": "Enregistrement voice-over et interview audio pour un podcast tech.",
+      "status": "Confirmed",
+      "admin_notes": "Créneau confirmé pour vendredi soir. Régie calée.",
+      "created_at": "2026-09-15T08:18:58.296Z"
+    }
+  ],
+  "blog_posts": [
+    {
+      "id": 1,
+      "slug": "comment-reussir-son-podcast-au-maroc-en-2026",
+      "title": "Comment réussir son podcast au Maroc en 2026 : Le Guide Complet",
+      "excerpt": "Du choix du concept à l'acoustique broadcast et la monétisation locale, découvrez les clés indispensables pour créer un podcast impactant au Maroc.",
+      "content": "<h2>L'essor fulgurant du podcast au Maroc</h2>\n<p>Le paysage médiatique marocain vit une transformation majeure. Les auditeurs recherchent désormais des conversations profondes, authentiques et spécialisées dans l'entrepreneuriat, la culture, le sport et la société.</p>\n<h3>1. Pourquoi la qualité audio et vidéo fait toute la différence</h3>\n<p>Sur YouTube et Spotify Vidéo, les spectateurs quittent une vidéo dès les 15 premières secondes si le son grésille ou si l'image est sombre. Investir dans un studio broadcast équipé de caméras cinéma 4K et de micros Shure SM7B positionne immédiatement votre contenu au standard international.</p>\n<h3>2. Structurer ses épisodes pour capter l'attention</h3>\n<p>Un podcast réussi s'appuie sur une narration rythmée : une accroche percutante de 30 secondes, une présentation concise de l'invité et des questions ciblées qui incitent au partage.</p>\n<h3>3. Maximiser la diffusion avec les formats courts</h3>\n<p>Ne sous-estimez jamais la puissance de TikTok et des Instagram Reels. Chez Kwan Studio, nous découpons systématiquement les moments forts de chaque épisode pour alimenter vos réseaux et attirer des milliers de nouveaux auditeurs.</p>",
+      "featured_image": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1000&auto=format&fit=crop",
+      "category": "Stratégie & Production",
+      "tags": [
+        "Podcast Maroc",
+        "Production",
+        "YouTube Maroc"
+      ],
+      "seo_title": "Comment réussir son podcast au Maroc en 2026 | Guide Kwan Studio",
+      "meta_description": "Guide complet pour lancer un podcast professionnel au Maroc : matériel, stratégie, tournage vidéo 4K et distribution.",
+      "canonical_url": "https://kwanstudio.ma/blog/comment-reussir-son-podcast-au-maroc-en-2026",
+      "og_image": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1000&auto=format&fit=crop",
+      "is_published": true,
+      "reading_time": "6 min",
+      "views_count": 142,
+      "published_at": "2026-09-17T08:18:58.296Z",
+      "created_at": "2026-09-17T08:18:58.296Z"
+    },
+    {
+      "id": 2,
+      "slug": "choisir-entre-podcast-audio-et-video-le-guide",
+      "title": "Podcast Audio ou Vidéo : Quelle formule choisir pour votre projet ?",
+      "excerpt": "Analyse comparative des formats audio natifs vs vidéo multi-caméras pour optimiser votre audience et vos conversions.",
+      "content": "<h2>Audio vs Vidéo : Deux dynamiques complémentaires</h2>\n<p>Lors de la création d'un podcast chez Kwan Studio, l'une des premières questions de nos clients concerne le choix du format : faut-il démarrer en audio pur ou miser directement sur la vidéo 4K ?</p>\n<h3>Les avantages du format Audio Pure (Pack L'Essentiel)</h3>\n<p>Le podcast audio favorise une intimité inégalée. Vos auditeurs vous écoutent en voiture sur l'autoroute Rabat-Casablanca, en faisant du sport ou au bureau. La barrière psychologique face à la caméra disparaît, permettant des confessions plus libres.</p>\n<h3>Pourquoi la vidéo est devenue incontournable</h3>\n<p>Les algorithmes des plateformes actuelles privilégient la vidéo. Avoir 2 ou 3 angles de caméra vous permet non seulement de publier sur YouTube et Spotify Video, mais surtout de générer des clips verticaux viraux qui drainent votre audience principale.</p>",
+      "featured_image": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1000&auto=format&fit=crop",
+      "category": "Équipement & Format",
+      "tags": [
+        "Vidéo 4K",
+        "Audio Broadcast",
+        "Spotify Video"
+      ],
+      "seo_title": "Podcast Audio ou Vidéo : Quelle formule choisir ? | Kwan Studio",
+      "meta_description": "Comparatif détaillé entre podcast audio pur et podcast vidéo multi-caméras 4K pour maximiser votre impact au Maroc.",
+      "canonical_url": "https://kwanstudio.ma/blog/choisir-entre-podcast-audio-et-video-le-guide",
+      "og_image": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1000&auto=format&fit=crop",
+      "is_published": true,
+      "reading_time": "5 min",
+      "views_count": 98,
+      "published_at": "2026-09-17T08:18:58.296Z",
+      "created_at": "2026-09-17T08:18:58.296Z"
+    }
+  ],
+  "media": [
+    {
+      "id": 1,
+      "filename": "kwan-studio-hero.jpg",
+      "original_name": "kwan-studio-hero.jpg",
+      "url": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1200&auto=format&fit=crop",
+      "mime_type": "image/jpeg",
+      "size": 245000,
+      "alt_text": "Studio podcast Kwan Studio Casablanca avec caméras cinéma et éclairage doux",
+      "section_tag": "hero",
+      "created_at": "2026-09-17T08:18:58.296Z"
+    },
+    {
+      "id": 2,
+      "filename": "shure-sm7b-mic.jpg",
+      "original_name": "shure-sm7b-mic.jpg",
+      "url": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1200&auto=format&fit=crop",
+      "mime_type": "image/jpeg",
+      "size": 189000,
+      "alt_text": "Micros Shure SM7B broadcast avec panneau acoustique bois",
+      "section_tag": "studio",
+      "created_at": "2026-09-17T08:18:58.296Z"
+    },
+    {
+      "id": 3,
+      "filename": "sound-mixing-desk.jpg",
+      "original_name": "sound-mixing-desk.jpg",
+      "url": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop",
+      "mime_type": "image/jpeg",
+      "size": 310000,
+      "alt_text": "Régie audio et console de mixage professionnelle",
+      "section_tag": "equipment",
+      "created_at": "2026-09-17T08:18:58.296Z"
+    },
+    {
+      "id": 4,
+      "filename": "sony-fx3-camera.jpg",
+      "original_name": "sony-fx3-camera.jpg",
+      "url": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1200&auto=format&fit=crop",
+      "mime_type": "image/jpeg",
+      "size": 275000,
+      "alt_text": "Caméra Sony FX3 4K sur trépied fluide de tournage podcast",
+      "section_tag": "studio",
+      "created_at": "2026-09-17T08:18:58.296Z"
+    }
+  ],
+  "site_settings": {
+    "hero_title": "Votre espace premium pour créer des podcasts qui marquent.",
+    "hero_subtitle": "Studio de tournage et d'enregistrement haute fidélité au cœur de Casablanca. Équipements broadcast 4K, acoustique d'exception et accompagnement de prestige.",
+    "hero_primary_cta": "Réserver mon studio",
+    "hero_secondary_cta": "Découvrir nos packs",
+    "contact_phone": "+212 6 61 00 00 00",
+    "contact_whatsapp": "+212661000000",
+    "contact_email": "contact@kwanstudio.ma",
+    "contact_city": "Casablanca, Maroc",
+    "contact_address": "Boulevard d'Anfa, Quartier Racine, Casablanca",
+    "contact_hours": "Lundi - Samedi : 09h00 - 21h00 (Sur réservation)",
+    "social_instagram": "https://instagram.com/kwanstudio.ma",
+    "social_youtube": "https://youtube.com/@kwanstudioma",
+    "social_linkedin": "https://linkedin.com/company/kwanstudio",
+    "seo_meta_title": "Kwan Studio - Studio Podcast Premium Maroc | Casablanca",
+    "seo_meta_description": "Studio podcast haut de gamme à Casablanca. Location de studio d'enregistrement audio et vidéo 4K broadcast au Maroc. Réservez votre créneau en ligne.",
+    "seo_keywords": "Studio podcast Maroc, Location studio podcast Maroc, Studio podcast Casablanca, Location podcast Casablanca, Podcast professionnel Maroc, Studio vidéo podcast"
+  },
+  "testimonials": [
+    {
+      "id": 1,
+      "author_name": "Mehdi Benjelloun",
+      "role_company": "Créateur du podcast \"Visionnaires\"",
+      "quote": "Kwan Studio a totalement transformé la qualité perçue de nos interviews. Les invités sont immédiatement impressionnés par le cadre et l'acoustique feutrée. Le rendu 4K des caméras Sony est bluffant.",
+      "rating": 5,
+      "avatar_url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop",
+      "project_title": "Podcast Business & Tech",
+      "is_featured": true
+    },
+    {
+      "id": 2,
+      "author_name": "Sara Alami",
+      "role_company": "Directrice de Marque, Casablanca",
+      "quote": "Nous avons enregistré la saison 2 de notre podcast d'entreprise chez Kwan. L'équipe technique est d'un professionnalisme rare au Maroc : ponctualité, régie attentionnée et livraison des fichiers en 24h chrono.",
+      "rating": 5,
+      "avatar_url": "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&auto=format&fit=crop",
+      "project_title": "Série Audio Corporate",
+      "is_featured": true
+    },
+    {
+      "id": 3,
+      "author_name": "Karim Tazi",
+      "role_company": "Host, \"Le Grand Entretien\"",
+      "quote": "Après avoir testé plusieurs studios au Maroc, Kwan Studio est sans conteste le seul qui allie une vraie acoustique de niveau broadcast avec une esthétique cinématographique moderne.",
+      "rating": 5,
+      "avatar_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop",
+      "project_title": "Talk-Show Hebdomadaire",
+      "is_featured": true
+    }
+  ],
+  "faqs": [
+    {
+      "id": 1,
+      "question": "Où se situe exactement Kwan Studio à Casablanca ?",
+      "answer": "Nous sommes idéalement situés sur le Boulevard d'Anfa dans le quartier Racine à Casablanca, avec des facilités de stationnement et un accès direct et sécurisé pour vous et vos invités.",
+      "category": "Location",
+      "sort_order": 1,
+      "is_active": true
+    },
+    {
+      "id": 2,
+      "question": "Faut-il apporter son propre matériel d'enregistrement ?",
+      "answer": "Non, absolument rien ! Le studio est 100% prêt à tourner (plug-and-play). Micros broadcast Shure SM7B, caméras cinéma Sony FX3 4K, éclairages Aputure doux et régie son sont déjà calibrés. Vous pouvez simplement venir avec vos idées ou une clé USB / disque dur si vous désirez emporter immédiatement vos rushes.",
+      "category": "Matériel",
+      "sort_order": 2,
+      "is_active": true
+    },
+    {
+      "id": 3,
+      "question": "Combien de personnes peuvent participer simultanément au podcast ?",
+      "answer": "Notre table acoustique sur-mesure peut accueillir confortablement jusqu'à 4 intervenants au micro simultanément, plus l'animateur et l'équipe d'assistance dans notre espace régie et lounge VIP.",
+      "category": "Capacité",
+      "sort_order": 3,
+      "is_active": true
+    },
+    {
+      "id": 4,
+      "question": "Comment se déroule la réservation et le paiement ?",
+      "answer": "Vous sélectionnez votre pack et formule en ligne ou via WhatsApp. Notre équipe vérifie les disponibilités et vous contacte sous 2 heures pour confirmer votre créneau. Le règlement s'effectue par virement, carte ou sur place lors de votre arrivée.",
+      "category": "Réservation",
+      "sort_order": 4,
+      "is_active": true
+    },
+    {
+      "id": 5,
+      "question": "Fournissez-vous également le montage et des extraits pour les réseaux sociaux (Reels/TikTok) ?",
+      "answer": "Oui ! Notre pack L'Élite Broadcast comprend le montage complet, l'étalonnage cinématique et la création de 3 formats courts verticaux sous-titrés prêts à publier. Cette option est également disponible à la carte pour les autres packs.",
+      "category": "Post-production",
+      "sort_order": 5,
+      "is_active": true
+    }
+  ]
+}
